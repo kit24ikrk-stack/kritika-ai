@@ -59,10 +59,9 @@ npm install
 ```
 
 ### 2. Configure environment variables
-Create a `.env` file in the project root:
-```env
-PORT=3000
-SESSION_SECRET=replace_with_a_long_random_string
+Copy the example file and fill in your own values:
+```bash
+cp .env.example .env
 ```
 | Variable | Required | Description |
 |---|---|---|
