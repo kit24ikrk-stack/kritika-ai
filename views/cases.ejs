@@ -1,0 +1,81 @@
+<%- include('partials/header') %>
+
+<main class="main-content">
+  <div class="page-intro">
+    <h1>Selected Work</h1>
+    <p>A few examples of automation, chatbots, and custom models we've built.</p>
+    
+    <!-- Category Filter Pills -->
+    <div class="case-filters" style="margin-top: 24px;">
+      <span class="pill active" data-filter="all">All</span>
+      <span class="pill" data-filter="chatbot">Chatbots</span>
+      <span class="pill" data-filter="automation">Automation</span>
+      <span class="pill" data-filter="custom-ai">Custom ML</span>
+    </div>
+  </div>
+
+  <section class="cases-grid">
+    <!-- Case 1 -->
+    <div class="case-card-clean" data-category="chatbot" onclick="window.location.href='/cases/1'">
+      <div class="case-image" style="background-image: url('https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=800&q=80'); background-size: cover; background-position: center;"></div>
+      <div class="case-tags">
+        <span class="chip">Chatbot</span>
+      </div>
+      <h3>Triage bot for a city clinic</h3>
+      <p>A WhatsApp assistant that cut patient response times by 70%.</p>
+    </div>
+
+    <!-- Case 2 -->
+    <div class="case-card-clean" data-category="automation" onclick="window.location.href='/cases/2'">
+      <div class="case-image" style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80'); background-size: cover; background-position: center;"></div>
+      <div class="case-tags">
+        <span class="chip">Automation</span>
+      </div>
+      <h3>Reports, end-to-end</h3>
+      <p>Transitioned compiled spreadsheet reporting to real-time status dashboards in 3 weeks.</p>
+    </div>
+
+    <!-- Case 3 -->
+    <div class="case-card-clean" data-category="custom-ai" onclick="window.location.href='/cases/3'">
+      <div class="case-image" style="background-image: url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=800&q=80'); background-size: cover; background-position: center;"></div>
+      <div class="case-tags">
+        <span class="chip">Custom ML</span>
+      </div>
+      <h3>Search that actually finds</h3>
+      <p>Semantic search for private HR policies and vectors with sub-second retrieval latency.</p>
+    </div>
+
+    <!-- Case 4 -->
+    <div class="case-card-clean" data-category="chatbot" onclick="window.location.href='/cases/4'">
+      <div class="case-image" style="background-image: url('https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=800&q=80'); background-size: cover; background-position: center;"></div>
+      <div class="case-tags">
+        <span class="chip">Chatbot</span>
+      </div>
+      <h3>Lead bot for a school</h3>
+      <p>WhatsApp-first lead generation bot resolving 82% of admissions queries automatically.</p>
+    </div>
+
+    <!-- Case 5 -->
+    <div class="case-card-clean" data-category="automation" onclick="window.location.href='/cases/5'">
+      <div class="case-image" style="background-image: url('https://images.unsplash.com/photo-1450101499163-c8848c66cb85?auto=format&fit=crop&w=800&q=80'); background-size: cover; background-position: center;"></div>
+      <div class="case-tags">
+        <span class="chip">Automation</span>
+      </div>
+      <h3>Invoice OCR pipeline</h3>
+      <p>AI document parsing and data matching with 97% extraction accuracy.</p>
+    </div>
+
+    <!-- Case 6 -->
+    <div class="case-card-clean" data-category="custom-ai" onclick="window.location.href='/cases/6'">
+      <div class="case-image" style="background-image: url('https://images.unsplash.com/photo-1472851294608-062f824d29cc?auto=format&fit=crop&w=800&q=80'); background-size: cover; background-position: center;"></div>
+      <div class="case-tags">
+        <span class="chip">Custom ML</span>
+      </div>
+      <h3>Recommendation engine</h3>
+      <p>Real-time cross-selling recommendation engine increasing average order value by 18%.</p>
+    </div>
+  </section>
+</main>
+
+<%- include('partials/chatbot') %>
+<%- include('partials/footer') %>

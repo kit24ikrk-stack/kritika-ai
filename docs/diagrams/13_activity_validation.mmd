@@ -1,0 +1,18 @@
+graph TD
+  A(["Receive POST /contact"]) --> B{"All required fields present?"}
+  B -->|No| E1["Error: missing fields"]
+  B -->|Yes| C{"Name 2-100 chars and valid?"}
+  C -->|No| E2["Error: name"]
+  C -->|Yes| D{"Email format valid?"}
+  D -->|No| E3["Error: email"]
+  D -->|Yes| F{"Phone valid characters?"}
+  F -->|No| E4["Error: phone"]
+  F -->|Yes| G{"Job details 10-2000 chars?"}
+  G -->|No| E5["Error: details"]
+  G -->|Yes| H["INSERT inquiry into SQLite"]
+  H --> I(["Show success message"])
+  E1 --> Z(["Re-render form with error"])
+  E2 --> Z
+  E3 --> Z
+  E4 --> Z
+  E5 --> Z

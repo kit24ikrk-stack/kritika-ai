@@ -1,0 +1,197 @@
+<%- include('partials/admin-header') %>
+
+<!-- Dashboard Title Header -->
+<div style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 20px; margin-bottom: 32px;">
+  <div>
+    <h1 style="font-size: 32px; font-weight: 800; font-family: var(--font-title); color: var(--text-primary); margin-top: 4px;">Good morning, Kritika.</h1>
+    <div style="margin-top: 4px; color: var(--text-secondary); font-size: 14px;">Here is what's happening with your studio today.</div>
+  </div>
+</div>
+
+<!-- Metrics Card Grid -->
+<section class="admin-kpis">
+  <!-- KPI 1: Total Inquiries -->
+  <div class="metrics-card">
+    <div class="metrics-card-info">
+      <span class="metrics-card-val"><%= metrics.total %></span>
+      <span class="metrics-card-label">Total Inquiries</span>
+      <span class="metrics-card-sub">All-time received</span>
+    </div>
+    <div class="metrics-card-icon blue">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+    </div>
+  </div>
+  
+  <!-- KPI 2: Unread Inquiries -->
+  <div class="metrics-card">
+    <div class="metrics-card-info">
+      <span class="metrics-card-val" style="color: var(--accent-blue);"><%= metrics.unread %></span>
+      <span class="metrics-card-label">Unread Inquiries</span>
+      <span class="metrics-card-sub">Awaiting response</span>
+    </div>
+    <div class="metrics-card-icon amber">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+    </div>
+  </div>
+  
+  <!-- KPI 3: In Progress -->
+  <div class="metrics-card">
+    <div class="metrics-card-info">
+      <span class="metrics-card-val" style="color: var(--accent-purple);"><%= metrics.progress %></span>
+      <span class="metrics-card-label">In Progress</span>
+      <span class="metrics-card-sub">Active follow-ups</span>
+    </div>
+    <div class="metrics-card-icon purple">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+    </div>
+  </div>
+  
+  <!-- KPI 4: Average Rating -->
+  <div class="metrics-card">
+    <div class="metrics-card-info">
+      <span class="metrics-card-val" style="color: #fbbf24;"><%= metrics.rating %></span>
+      <span class="metrics-card-label">Average Rating</span>
+      <span class="metrics-card-sub">From <%= metrics.reviewsCount %> reviews</span>
+    </div>
+    <div class="metrics-card-icon green">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+    </div>
+  </div>
+</section>
+
+<!-- Dashboard Content Split -->
+<section class="admin-dashboard-split">
+  
+  <!-- Inquiries Table Panel -->
+  <div class="data-table-container" id="inquiries">
+    <div class="table-header">
+      <h3>Recent Client Inquiries</h3>
+      <div style="display: flex; gap: 8px;">
+        <span class="pill active" id="table-filter-all" style="padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600;">All</span>
+        <span class="pill" id="table-filter-new" style="padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600;">New</span>
+        <span class="pill" id="table-filter-replied" style="padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600;">Replied</span>
+      </div>
+    </div>
+
+    <div class="table-body">
+      <% if (inquiries && inquiries.length > 0) { %>
+        <% inquiries.forEach(inq => { %>
+          <div class="table-row inquiry-row-item" data-status="<%= inq.status %>">
+            
+            <!-- Status Badge Pill -->
+            <span class="status-pill <%= inq.status === 'New' ? 'new' : inq.status === 'In progress' ? 'progress' : inq.status === 'Replied' ? 'replied' : 'closed' %>">
+              <%= inq.status %>
+            </span>
+            
+            <!-- Inquiry Details -->
+            <div class="inquiry-info">
+              <span class="inquiry-name"><%= inq.name %></span>
+              <span class="inquiry-meta"><%= inq.email %> &bull; <strong style="color: var(--text-primary); font-weight: 500;"><%= inq.company || 'Private Client' %></strong> &bull; "<%= inq.job_title || 'General project inquiry' %>"</span>
+            </div>
+            
+            <!-- Time and Action CTA -->
+            <% 
+              const date = new Date(inq.created_at);
+              const formattedDate = date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+            %>
+            <span class="inquiry-time"><%= formattedDate %></span>
+            <a href="/admin/inquiries/<%= inq.id %>" class="btn btn-secondary btn-sm" style="border-radius: 8px; font-weight: 600; padding: 6px 14px; transition: all 0.2s;">
+              Open
+            </a>
+          </div>
+        <% }) %>
+      <% } else { %>
+        <div style="padding: 40px; text-align: center; color: var(--text-muted); font-size: 14px;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-bottom: 8px; opacity: 0.5;"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+          <div>No client inquiries stored in database.</div>
+        </div>
+      <% } %>
+    </div>
+  </div>
+
+  <!-- Quick Actions / Analytics Column -->
+  <div style="display: flex; flex-direction: column; gap: 24px;">
+    
+    <!-- Chart representation -->
+    <div class="glass-card" style="padding: 24px; background: #ffffff; border: 1px solid rgba(0, 0, 0, 0.05); box-shadow: 0 4px 6px -1px rgba(15, 23, 42, 0.02);">
+      <h3 style="font-size: 16px; font-weight: 700; margin-bottom: 18px; color: var(--text-primary); font-family: var(--font-title);">Weekly Inquiries Volume</h3>
+      
+      <!-- Visual chart representation -->
+      <div style="height: 120px; display: flex; align-items: flex-end; gap: 10px; border-bottom: 2px solid #e2e8f0; padding-bottom: 12px; margin-bottom: 12px;">
+        <div style="flex: 1; height: 35%; background: var(--grad-primary); border-radius: 6px 6px 0 0; transition: height 0.3s ease; cursor: pointer; position: relative;" title="Week 17: 5 Inquiries" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'"></div>
+        <div style="flex: 1; height: 50%; background: var(--grad-primary); border-radius: 6px 6px 0 0; transition: height 0.3s ease; cursor: pointer;" title="Week 18: 7 Inquiries" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'"></div>
+        <div style="flex: 1; height: 30%; background: var(--grad-primary); border-radius: 6px 6px 0 0; transition: height 0.3s ease; cursor: pointer;" title="Week 19: 4 Inquiries" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'"></div>
+        <div style="flex: 1; height: 75%; background: var(--grad-primary); border-radius: 6px 6px 0 0; transition: height 0.3s ease; cursor: pointer;" title="Week 20: 11 Inquiries" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'"></div>
+        <div style="flex: 1; height: 60%; background: var(--grad-primary); border-radius: 6px 6px 0 0; transition: height 0.3s ease; cursor: pointer;" title="Week 21: 9 Inquiries" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'"></div>
+        <div style="flex: 1; height: 95%; background: var(--grad-primary); border-radius: 6px 6px 0 0; transition: height 0.3s ease; cursor: pointer;" title="Week 22 (Current): 14 Inquiries" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'"></div>
+      </div>
+      <div style="display: flex; justify-content: space-between; font-size: 11px; color: var(--text-muted); font-weight: 500;">
+        <span>Week 17</span>
+        <span>Week 22 (Current)</span>
+      </div>
+    </div>
+
+    <!-- Action Box -->
+    <div class="glass-card" style="padding: 24px; background: #ffffff; border: 1px solid rgba(0, 0, 0, 0.05); box-shadow: 0 4px 6px -1px rgba(15, 23, 42, 0.02); display: flex; flex-direction: column; gap: 10px;">
+      <h3 style="font-size: 16px; font-weight: 700; color: var(--text-primary); margin-bottom: 12px; font-family: var(--font-title);">Quick Actions</h3>
+      
+      <button class="btn btn-secondary btn-sm" style="justify-content: flex-start; text-align: left; padding: 10px 14px; border-radius: 10px; font-weight: 600; display: flex; align-items: center; gap: 8px; font-size: 13px;" onclick="alert('Create draft modal is a design placeholder.')">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 1 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+        New Article Draft
+      </button>
+      
+      <button class="btn btn-secondary btn-sm" style="justify-content: flex-start; text-align: left; padding: 10px 14px; border-radius: 10px; font-weight: 600; display: flex; align-items: center; gap: 8px; font-size: 13px;" onclick="alert('Schedule meetup details is a design placeholder.')">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+        Schedule Meetup Event
+      </button>
+      
+      <button class="btn btn-secondary btn-sm" style="justify-content: flex-start; text-align: left; padding: 10px 14px; border-radius: 10px; font-weight: 600; display: flex; align-items: center; gap: 8px; font-size: 13px;" onclick="alert('Exporting inquiries CSV data...')">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+        Export Inquiries CSV
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- Filter script for data table -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const filterAll = document.getElementById('table-filter-all');
+    const filterNew = document.getElementById('table-filter-new');
+    const filterReplied = document.getElementById('table-filter-replied');
+    const rows = document.querySelectorAll('.inquiry-row-item');
+
+    function filterTable(status) {
+      rows.forEach(row => {
+        const rowStatus = row.getAttribute('data-status');
+        if (status === 'all' || rowStatus === status) {
+          row.style.display = 'flex';
+        } else {
+          row.style.display = 'none';
+        }
+      });
+    }
+
+    if (filterAll && filterNew && filterReplied) {
+      filterAll.addEventListener('click', () => {
+        [filterAll, filterNew, filterReplied].forEach(p => p.classList.remove('active'));
+        filterAll.classList.add('active');
+        filterTable('all');
+      });
+
+      filterNew.addEventListener('click', () => {
+        [filterAll, filterNew, filterReplied].forEach(p => p.classList.remove('active'));
+        filterNew.classList.add('active');
+        filterTable('New');
+      });
+
+      filterReplied.addEventListener('click', () => {
+        [filterAll, filterNew, filterReplied].forEach(p => p.classList.remove('active'));
+        filterReplied.classList.add('active');
+        filterTable('Replied');
+      });
+    }
+  });
+</script>
+
+<%- include('partials/admin-footer') %>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kritika · AI Software Solutions Studio</title>
+  <!-- Google Fonts for Modern Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="app-container">
+    <header>
+      <div class="nav-container">
+        <a href="/" class="logo-link">
+          <div class="logo-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+              <polyline points="2 17 12 22 22 17"></polyline>
+              <polyline points="2 12 12 17 22 12"></polyline>
+            </svg>
+          </div>
+          <div class="logo-text">kritika<span>.</span>ai</div>
+        </a>
+        
+        <button class="mobile-menu-btn" id="mobile-menu-btn">☰</button>
+        
+        <nav id="nav-menu">
+          <ul>
+            <% if (session && session.adminId) { %>
+              <!-- Admin Navigation (FR-04) -->
+              <li><a href="/admin/dashboard" class="<%= activePage === 'Dashboard' ? 'active' : '' %>">Dashboard</a></li>
+              <li><a href="/admin/logout">Logout (<%= session.adminUser %>)</a></li>
+            <% } else { %>
+              <!-- Public Navigation (FR-01) -->
+              <li><a href="/" class="<%= activePage === 'Home' ? 'active' : '' %>">Home</a></li>
+              <li><a href="/solutions" class="<%= activePage === 'Solutions' ? 'active' : '' %>">Solutions</a></li>
+              <li><a href="/cases" class="<%= activePage === 'Case Studies' ? 'active' : '' %>">Case Studies</a></li>
+              <li><a href="/feedback" class="<%= activePage === 'Feedback' ? 'active' : '' %>">Feedback</a></li>
+              <li><a href="/articles" class="<%= activePage === 'Articles' ? 'active' : '' %>">Articles</a></li>
+              <li><a href="/gallery" class="<%= activePage === 'Gallery' ? 'active' : '' %>">Gallery</a></li>
+              <li><a href="/contact" class="<%= activePage === 'Contact' ? 'active' : '' %>">Contact Us</a></li>
+            <% } %>
+          </ul>
+        </nav>
+
+        <% if (!session || !session.adminId) { %>
+          <div class="nav-actions">
+            <a href="/contact" class="btn btn-primary btn-sm">Get a quote</a>
+          </div>
+        <% } %>
+      </div>
+    </header>

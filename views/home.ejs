@@ -1,0 +1,100 @@
+<%- include('partials/header') %>
+
+<main class="main-content">
+  <!-- Hero -->
+  <section class="hero-section">
+    <div class="hero-content">
+      <h1>We help companies build <em>useful</em> AI tools — not hype.</h1>
+      <p class="hero-subtitle">Kritika is a small software studio specialising in chatbots, automation, and machine learning. We've been doing this since 2021.</p>
+      
+      <div class="hero-buttons">
+        <a href="/contact" class="btn btn-primary">Start a conversation</a>
+        <a href="/cases" class="btn btn-secondary">Our work</a>
+      </div>
+    </div>
+    
+    <div class="hero-illustration" style="background-image: url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=80'); background-size: cover; background-position: center;"></div>
+  </section>
+
+  <!-- What We Do -->
+  <section class="home-services">
+    <div class="home-services-header">
+      <h2>What we actually do</h2>
+      <p>Four things, done well.</p>
+    </div>
+
+    <div class="services-grid">
+      <a href="/solutions" class="service-card-clean">
+        <div class="service-icon-wrap blue">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+        </div>
+        <h3>AI Chatbots</h3>
+        <p>Custom chatbots trained on your docs. Deployed on your website, WhatsApp, or Slack — wherever your customers already are.</p>
+        <span class="card-arrow">→</span>
+      </a>
+
+      <a href="/solutions" class="service-card-clean">
+        <div class="service-icon-wrap purple">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+        </div>
+        <h3>Workflow Automation</h3>
+        <p>We replace your manual copy-paste jobs with scripts that run on their own. Invoice parsing, data syncing, report generation.</p>
+        <span class="card-arrow">→</span>
+      </a>
+
+      <a href="/solutions" class="service-card-clean">
+        <div class="service-icon-wrap green">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96-.44 2.5 2.5 0 0 1 0-3.12 3 3 0 0 1 0-4.88 2.5 2.5 0 0 1 0-3.12A2.5 2.5 0 0 1 9.5 2zM14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96-.44 2.5 2.5 0 0 0 0-3.12 3 3 0 0 0 0-4.88 2.5 2.5 0 0 0 0-3.12A2.5 2.5 0 0 0 14.5 2z"></path></svg>
+        </div>
+        <h3>Custom Models</h3>
+        <p>Fine-tuned language models and classifiers trained on your own data. Runs on your servers, stays under your control.</p>
+        <span class="card-arrow">→</span>
+      </a>
+
+      <a href="/solutions" class="service-card-clean">
+        <div class="service-icon-wrap amber">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
+        </div>
+        <h3>Strategy & Workshops</h3>
+        <p>Not sure where AI fits in? We'll sit with your team and figure out what's worth building — and what isn't.</p>
+        <span class="card-arrow">→</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- Social Proof -->
+  <% if (reviews && reviews.length > 0) { %>
+    <section class="home-testimonials">
+      <h2>What clients say</h2>
+
+      <div class="reviews-grid">
+        <% reviews.forEach(review => { %>
+          <div class="testimonial-card">
+            <div class="review-stars">
+              <% for (let i = 0; i < review.rating; i++) { %>★<% } %>
+              <% for (let i = review.rating; i < 5; i++) { %>☆<% } %>
+            </div>
+            <p class="review-text">"<%= review.comment %>"</p>
+            <div class="review-author">
+              <div class="author-avatar"><%= review.name.charAt(0) %></div>
+              <div class="author-info">
+                <span class="author-name"><%= review.name %></span>
+                <span class="author-role"><%= review.role %></span>
+              </div>
+            </div>
+          </div>
+        <% }) %>
+      </div>
+    </section>
+  <% } %>
+
+  <!-- Simple CTA -->
+  <section class="home-cta">
+    <h2>Got an idea? Let's talk about it.</h2>
+    <p>We typically respond within a working day. No sales pitches, just an honest conversation about what's possible.</p>
+    <a href="/contact" class="btn btn-primary">Get in touch</a>
+  </section>
+</main>
+
+<%- include('partials/chatbot') %>
+<%- include('partials/footer') %>

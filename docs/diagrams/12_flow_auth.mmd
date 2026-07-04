@@ -1,0 +1,7 @@
+graph TD
+  START(["Request to /admin/* route"]) --> H["Set Cache-Control: no-store"]
+  H --> Q{"req.session.adminId exists?"}
+  Q -->|Yes| NEXT["next() - run route handler"]
+  Q -->|No| RED["Redirect to /admin/login"]
+  NEXT --> END1(["Serve protected admin page"])
+  RED --> END2(["Show login page"])

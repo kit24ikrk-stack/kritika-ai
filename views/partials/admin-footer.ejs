@@ -1,0 +1,18 @@
+      </main>
+    </div> <!-- Close admin-content-wrapper -->
+  </div> <!-- Close admin-layout -->
+
+  <!-- Scripts -->
+  <script src="/js/main.js"></script>
+  <script>
+    // Live date display for dashboard topbar
+    document.addEventListener('DOMContentLoaded', () => {
+      const dateEl = document.getElementById('current-date-display');
+      if (dateEl) {
+        const options = { day: 'numeric', month: 'long', year: 'numeric' };
+        dateEl.textContent = new Date().toLocaleDateString('en-US', options);
+      }
+    });
+  </script>
+</body>
+</html>

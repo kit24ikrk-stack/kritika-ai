@@ -1,0 +1,7 @@
+stateDiagram-v2
+  [*] --> New: Inquiry submitted by visitor
+  New --> InProgress: Admin begins handling
+  New --> Replied: Admin responds directly
+  InProgress --> Replied: Response sent
+  Replied --> [*]: Closed / archived
+  InProgress --> [*]: Closed

@@ -1,0 +1,17 @@
+sequenceDiagram
+  actor U as Visitor
+  participant B as Browser
+  participant S as Express POST /contact
+  participant DB as SQLite (inquiries)
+  U->>B: Fill 7-field form and submit
+  B->>S: POST form data
+  S->>S: Server-side validation (all 7 fields)
+  alt Validation fails
+    S-->>B: Re-render form with error message
+    B-->>U: Display field errors
+  else Validation passes
+    S->>DB: INSERT INTO inquiries (?, ?, ...)
+    DB-->>S: insertId
+    S-->>B: Render success confirmation
+    B-->>U: "Inquiry received"
+  end

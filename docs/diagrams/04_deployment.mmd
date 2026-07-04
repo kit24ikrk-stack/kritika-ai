@@ -1,0 +1,14 @@
+graph TB
+  USER["Client Device<br/>(Browser)"]
+  subgraph Host["Host Machine (Windows / localhost)"]
+    subgraph Node["Node.js Runtime :3000"]
+      APP["Express Application"]
+      SESS["In-Memory Session Store"]
+    end
+    STATIC["/public (CSS, JS, images)"]
+    FILE[("database.sqlite (file)")]
+  end
+  USER -->|HTTP :3000| APP
+  APP --> SESS
+  APP --> STATIC
+  APP --> FILE

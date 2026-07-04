@@ -1,0 +1,15 @@
+graph TD
+  ROOT["Home (/)"]
+  ROOT --> S["Solutions (/solutions)"]
+  ROOT --> C["Case Studies (/cases)"]
+  C --> CD["Case Detail (/cases/:id)"]
+  ROOT --> F["Feedback (/feedback)"]
+  ROOT --> AR["Articles (/articles)"]
+  ROOT --> G["Gallery (/gallery)"]
+  ROOT --> CO["Contact Us (/contact)"]
+  ROOT --> AL["Admin Login (/admin/login)"]
+  AL --> AD["Admin Dashboard (/admin/dashboard)"]
+  AD --> AID["Inquiry Detail (/admin/inquiries/:id)"]
+  AD --> LO["Logout (/admin/logout)"]
+  classDef admin fill:#0b3d5c,color:#fff;
+  class AL,AD,AID,LO admin;

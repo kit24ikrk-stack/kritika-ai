@@ -1,0 +1,107 @@
+<%- include('partials/header') %>
+
+<main class="main-content">
+  <!-- Header / Summary Section -->
+  <section class="page-intro" style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 24px;">
+    <div>
+      <h1>Client Feedback</h1>
+      <p>Honest feedback from real project handovers.</p>
+    </div>
+
+    <div style="display: flex; flex-direction: column; align-items: flex-end;">
+      <div style="font-size: 32px; font-weight: 800; font-family: var(--font-title);"><%= avgScore %><span style="font-size: 16px; color: var(--text-muted); font-weight: 500;">/5</span></div>
+      <div style="color: #fbbf24; font-size: 14px; margin-top: -4px;">
+        <% const fullStars = Math.floor(avgScore); %>
+        <% for (let i = 0; i < fullStars; i++) { %>★<% } %>
+        <% for (let i = fullStars; i < 5; i++) { %>☆<% } %>
+      </div>
+      <div style="font-size: 12px; color: var(--text-secondary); margin-top: 4px;">Based on <%= reviews.length %> reviews</div>
+    </div>
+  </section>
+
+  <!-- Notification Banner -->
+  <% if (session.statusMsg || (typeof statusMsg !== 'undefined' && statusMsg)) { %>
+    <div style="padding: 12px 20px; background-color: var(--accent-green); color: white; border-radius: 8px; font-size: 14px; margin-bottom: 24px;">
+      Feedback successfully submitted.
+    </div>
+  <% } %>
+
+  <!-- Reviews Grid -->
+  <section class="reviews-grid" style="margin-bottom: 40px;">
+    <% if (reviews && reviews.length > 0) { %>
+      <% reviews.forEach(review => { %>
+        <div class="testimonial-card">
+          <div class="review-stars" style="color: #fbbf24; font-size: 14px;">
+            <% for (let i = 0; i < review.rating; i++) { %>★<% } %>
+            <% for (let i = review.rating; i < 5; i++) { %>☆<% } %>
+          </div>
+          <p class="review-text" style="font-size: 15px; font-style: italic; line-height: 1.6;">"<%= review.comment %>"</p>
+          <div class="review-author" style="display: flex; align-items: center; gap: 12px; margin-top: auto; padding-top: 12px;">
+            <div class="author-avatar" style="width: 32px; height: 32px; border-radius: 50%; background: var(--bg-surface); border: 1px solid var(--border-color); display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 12px;"><%= review.name.charAt(0) %></div>
+            <div class="author-info" style="display: flex; flex-direction: column;">
+              <span class="author-name" style="font-size: 13px; font-weight: 600;"><%= review.name %></span>
+              <span class="author-role" style="font-size: 12px; color: var(--text-secondary);"><%= review.role || 'Client' %></span>
+            </div>
+          </div>
+        </div>
+      <% }) %>
+    <% } else { %>
+      <div style="grid-column: span 2; text-align: center; padding: 40px; border: 1px dashed var(--border-color); border-radius: 12px; color: var(--text-secondary);">
+        No client reviews registered yet.
+      </div>
+    <% } %>
+  </section>
+
+  <!-- Leave Rating Banner -->
+  <section class="feedback-action-bar" style="display: flex; justify-content: space-between; align-items: center; padding-top: 32px; border-top: 1px solid var(--border-color);">
+    <div style="font-size: 15px; color: var(--text-secondary);">
+      Worked with our studio? We value your honest thoughts.
+    </div>
+    <button class="btn btn-secondary" id="add-review-btn">Add review</button>
+  </section>
+
+  <!-- Add Review Popup Modal -->
+  <div class="modal" id="review-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 style="font-size: 18px; font-weight: 600;">Submit Feedback</h3>
+        <button class="close-btn" id="close-modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form action="/feedback/add" method="POST">
+          <div class="form-group">
+            <label>Rating *</label>
+            <div class="star-rating-select" id="star-select" style="font-size: 24px; color: var(--border-color); cursor: pointer; display: flex; gap: 4px;">
+              <span data-value="1">★</span>
+              <span data-value="2">★</span>
+              <span data-value="3">★</span>
+              <span data-value="4">★</span>
+              <span data-value="5" class="selected" style="color: #fbbf24;">★</span>
+            </div>
+            <input type="hidden" name="rating" id="rating-value" value="5">
+          </div>
+
+          <div class="form-group">
+            <label for="name">Full Name *</label>
+            <input type="text" class="form-control" name="name" id="name" required placeholder="e.g. Anu Adhikari">
+          </div>
+
+          <div class="form-group">
+            <label for="role">Job Title & Company</label>
+            <input type="text" class="form-control" name="role" id="role" placeholder="e.g. Operations Manager, Clinic Co.">
+          </div>
+
+          <div class="form-group">
+            <label for="comment">Review / Comment *</label>
+            <textarea class="form-control" name="comment" id="comment" required placeholder="Tell us about your project handover experience..."></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 16px;">Post feedback</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</main>
+
+<%- include('partials/chatbot') %>
+<%- include('partials/footer') %>

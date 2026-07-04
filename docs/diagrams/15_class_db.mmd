@@ -1,0 +1,22 @@
+classDiagram
+  class ExpressServer {
+    +app
+    +requireAdmin(req, res, next)
+    +route handlers
+  }
+  class DataAccessLayer {
+    +initDb() Promise
+    +query(sql, params) Promise
+    +execute(sql, params) Promise
+    +getOne(sql, params) Promise
+    +getDbType() string
+  }
+  class SQLiteDatabase {
+    -file database.sqlite
+    +all(sql, params, cb)
+    +get(sql, params, cb)
+    +run(sql, params, cb)
+    +serialize()
+  }
+  ExpressServer --> DataAccessLayer : uses
+  DataAccessLayer --> SQLiteDatabase : wraps

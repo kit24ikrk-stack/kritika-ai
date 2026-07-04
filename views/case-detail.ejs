@@ -1,0 +1,52 @@
+<%- include('partials/header') %>
+
+<main class="main-content">
+  <div style="margin-bottom: 24px; max-width: 800px; margin-left: auto; margin-right: auto;">
+    <a href="/cases" style="font-size: 13px; color: var(--text-secondary); display: flex; align-items: center; gap: 6px; text-decoration: none;">
+      ← Back to selected work
+    </a>
+    
+    <div style="display: flex; gap: 8px; margin-top: 24px;">
+      <span class="chip"><%= detail.badge %></span>
+      <span class="chip" style="background: var(--bg-surface);"><%= detail.year %></span>
+    </div>
+    
+    <h1 style="font-size: 40px; margin-top: 16px; line-height: 1.1;"><%= detail.title %></h1>
+    <p style="font-size: 18px; color: var(--text-secondary); margin-top: 12px; line-height: 1.5;"><%= detail.subtitle %></p>
+  </div>
+
+  <!-- KPI Grid -->
+  <section class="kpi-grid" style="max-width: 800px; margin: 32px auto;">
+    <% detail.kpis.forEach(kpi => { %>
+      <div style="padding: 24px; border: 1px solid var(--border-color); border-radius: 12px; background: #ffffff;">
+        <div style="font-size: 32px; font-weight: 800; font-family: var(--font-title); color: var(--text-primary);"><%= kpi.key %></div>
+        <div style="font-size: 14px; color: var(--text-secondary); margin-top: 4px;"><%= kpi.val %></div>
+      </div>
+    <% }) %>
+  </section>
+
+  <!-- Large Visual Banner -->
+  <section style="max-width: 1000px; margin: 0 auto 48px; border-radius: 16px; overflow: hidden; height: 360px; background-image: url('<%= detail.image %>'); background-size: cover; background-position: center; border: 1px solid var(--border-color);"></section>
+
+  <!-- Detail Contents -->
+  <section class="case-detail-content" style="max-width: 800px; margin: 0 auto; display: grid; gap: 48px;">
+    <div>
+      <h2 style="font-size: 24px; margin-bottom: 16px; color: var(--text-primary); border-bottom: 1px solid var(--border-color); padding-bottom: 12px;">The Brief</h2>
+      <p style="color: var(--text-secondary); font-size: 16px; line-height: 1.7;"><%= detail.brief %></p>
+    </div>
+
+    <div>
+      <h2 style="font-size: 24px; margin-bottom: 16px; color: var(--text-primary); border-bottom: 1px solid var(--border-color); padding-bottom: 12px;">What We Did</h2>
+      <p style="color: var(--text-secondary); font-size: 16px; line-height: 1.7;"><%= detail.whatWeDid %></p>
+    </div>
+
+    <!-- Process Visual Representation -->
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 16px;">
+      <div style="height: 240px; background-image: url('<%= detail.secImage1 %>'); background-size: cover; background-position: center; border-radius: 12px; border: 1px solid var(--border-color);"></div>
+      <div style="height: 240px; background-image: url('<%= detail.secImage2 %>'); background-size: cover; background-position: center; border-radius: 12px; border: 1px solid var(--border-color);"></div>
+    </div>
+  </section>
+</main>
+
+<%- include('partials/chatbot') %>
+<%- include('partials/footer') %>

@@ -1,0 +1,136 @@
+<%- include('partials/header') %>
+
+<main class="main-content">
+  <!-- Articles Header -->
+  <div class="page-intro" style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 24px;">
+    <div>
+      <h1>Notes from the studio.</h1>
+      <p>Thoughts on building AI products that actually work.</p>
+    </div>
+    
+    <!-- Search Box -->
+    <div style="border: 1px solid var(--border-color); border-radius: 8px; padding: 8px 14px; display: flex; align-items: center; gap: 8px; width: 280px; background: #ffffff;">
+      <span style="font-size: 14px; color: var(--text-muted);">🔍</span>
+      <input type="text" id="article-search" placeholder="Search articles..." value="<%= typeof searchQuery !== 'undefined' ? searchQuery : '' %>" style="background: none; border: none; outline: none; color: var(--text-primary); font-size: 14px; width: 100%;">
+    </div>
+  </div>
+
+  <section class="articles-split">
+    <!-- Featured Article -->
+    <div class="featured-article">
+      <div style="border: 1px solid var(--border-color); overflow: hidden; border-radius: 12px; background: #ffffff; display: flex; flex-direction: column; height: 100%;">
+        <div style="height: 240px; background-image: url('https://images.unsplash.com/photo-1455390582262-044cdead27d8?auto=format&fit=crop&w=800&q=80'); background-size: cover; background-position: center; border-bottom: 1px solid var(--border-color);"></div>
+        <div style="padding: 32px; display: flex; flex-direction: column; gap: 16px; flex-grow: 1;">
+          <span class="chip" style="align-self: flex-start; background: var(--bg-surface);">Opinion</span>
+          <h2 style="font-size: 28px; line-height: 1.2;">RAG isn't a strategy. It's a tactic.</h2>
+          <p style="color: var(--text-secondary); font-size: 15px; line-height: 1.6; flex-grow: 1;">
+            What companies get wrong when they say they "want AI" — and a simpler, cost-effective way to get value before committing to expensive compute.
+          </p>
+          <div class="article-meta" style="margin-top: 16px;">
+            <span>Kritika Shrestha</span>
+            <span>•</span>
+            <span>June 2026</span>
+            <span>•</span>
+            <span>5 min read</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Recent Articles List -->
+    <div class="recent-articles-list">
+      <h3 style="font-size: 18px; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid var(--border-color);">Recent Posts</h3>
+      
+      <!-- Post 1 -->
+      <a href="#" class="recent-article-item" style="text-decoration: none; color: inherit;">
+        <div class="recent-article-img" style="background-image: url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=80'); background-size: cover; background-position: center;"></div>
+        <div class="recent-article-details">
+          <span class="chip" style="align-self: flex-start; padding: 2px 8px; font-size: 10px; background: var(--bg-surface);">Guide</span>
+          <h4 style="font-size: 15px; line-height: 1.4;">Costing an LLM feature, honestly</h4>
+          <div class="article-meta" style="font-size: 11px; color: var(--text-muted); margin-top: 4px;">
+            <span>7 min read</span>
+            <span>•</span>
+            <span>May 2026</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Post 2 -->
+      <a href="#" class="recent-article-item" style="text-decoration: none; color: inherit;">
+        <div class="recent-article-img" style="background-image: url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=800&q=80'); background-size: cover; background-position: center;"></div>
+        <div class="recent-article-details">
+          <span class="chip" style="align-self: flex-start; padding: 2px 8px; font-size: 10px; background: var(--bg-surface);">Opinion</span>
+          <h4 style="font-size: 15px; line-height: 1.4;">We tried 5 vector databases so you don't have to</h4>
+          <div class="article-meta" style="font-size: 11px; color: var(--text-muted); margin-top: 4px;">
+            <span>4 min read</span>
+            <span>•</span>
+            <span>April 2026</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Post 3 -->
+      <a href="#" class="recent-article-item" style="text-decoration: none; color: inherit;">
+        <div class="recent-article-img" style="background-image: url('https://images.unsplash.com/photo-1455390582262-044cdead27d8?auto=format&fit=crop&w=800&q=80'); background-size: cover; background-position: center;"></div>
+        <div class="recent-article-details">
+          <span class="chip" style="align-self: flex-start; padding: 2px 8px; font-size: 10px; background: var(--bg-surface);">Case Study</span>
+          <h4 style="font-size: 15px; line-height: 1.4;">How to write a structured AI project brief</h4>
+          <div class="article-meta" style="font-size: 11px; color: var(--text-muted); margin-top: 4px;">
+            <span>3 min read</span>
+            <span>•</span>
+            <span>March 2026</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Post 4 -->
+      <a href="#" class="recent-article-item" style="text-decoration: none; color: inherit;">
+        <div class="recent-article-img" style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80'); background-size: cover; background-position: center;"></div>
+        <div class="recent-article-details">
+          <span class="chip" style="align-self: flex-start; padding: 2px 8px; font-size: 10px; background: var(--bg-surface);">Tutorial</span>
+          <h4 style="font-size: 15px; line-height: 1.4;">Evaluation is the real product</h4>
+          <div class="article-meta" style="font-size: 11px; color: var(--text-muted); margin-top: 4px;">
+            <span>6 min read</span>
+            <span>•</span>
+            <span>March 2026</span>
+          </div>
+        </div>
+      </a>
+
+    </div>
+  </section>
+</main>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const searchInput = document.getElementById('article-search');
+    const articles = document.querySelectorAll('.recent-article-item');
+    const featuredCard = document.querySelector('.featured-article');
+
+    if (searchInput) {
+      searchInput.addEventListener('input', (e) => {
+        const query = e.target.value.toLowerCase().trim();
+        
+        articles.forEach(art => {
+          const title = art.querySelector('h4').textContent.toLowerCase();
+          const category = art.querySelector('.chip').textContent.toLowerCase();
+          if (title.includes(query) || category.includes(query)) {
+            art.style.display = 'flex';
+          } else {
+            art.style.display = 'none';
+          }
+        });
+
+        // Hide featured card if query is present for cleaner search experience
+        if (query.length > 0 && featuredCard) {
+          featuredCard.style.opacity = '0.1';
+        } else if (featuredCard) {
+          featuredCard.style.opacity = '1';
+        }
+      });
+    }
+  });
+</script>
+
+<%- include('partials/chatbot') %>
+<%- include('partials/footer') %>

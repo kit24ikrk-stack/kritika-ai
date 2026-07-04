@@ -1,0 +1,30 @@
+erDiagram
+  INQUIRIES {
+    INTEGER id PK
+    TEXT name
+    TEXT email
+    TEXT phone
+    TEXT company
+    TEXT country
+    TEXT job_title
+    TEXT job_details
+    TEXT status
+    TEXT assigned_to
+    DATETIME created_at
+  }
+  ADMINS {
+    INTEGER id PK
+    TEXT username UK
+    TEXT password
+    DATETIME created_at
+  }
+  REVIEWS {
+    INTEGER id PK
+    TEXT name
+    TEXT role
+    INTEGER rating
+    TEXT comment
+    DATETIME created_at
+  }
+  ADMINS ||--o{ INQUIRIES : "manages (logical)"
+  ADMINS ||--o{ REVIEWS : "moderates (logical)"

@@ -1,0 +1,51 @@
+<!-- AI Chatbot Floating Container (FR-07) -->
+<div class="chatbot-container">
+  <!-- Interactive FAB Tooltip -->
+  <div class="chatbot-fab-tooltip" id="chat-tooltip">
+    👋 Have a question? Ask our AI assistant!
+  </div>
+
+  <!-- FAB Bubble Button -->
+  <div class="chatbot-bubble" id="chat-bubble">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+    </svg>
+  </div>
+
+  <!-- Chat Panel -->
+  <div class="chatbot-panel" id="chat-panel">
+    <!-- Chat Header -->
+    <div class="chat-header">
+      <div class="chat-header-avatar">K</div>
+      <div class="chat-header-info">
+        <span class="chat-header-name">Kritika · AI</span>
+        <span class="chat-header-status">● Active FAQ Assistant</span>
+      </div>
+      <button class="chat-header-close" id="chat-close">&times;</button>
+    </div>
+
+    <!-- Chat Messages Container -->
+    <div class="chat-messages" id="chat-messages">
+      <!-- Bot welcome message -->
+      <div class="chat-bubble chat-bubble-bot">
+        Hi! I'm Kritika's AI assistant. I can answer questions about our software services, timelines, pricing, or past projects.
+        <br/><br/>
+        What brings you here today?
+      </div>
+      
+      <!-- Preset User Suggestion Queries -->
+      <div class="chat-suggestions" id="chat-suggestions">
+        <button class="chat-suggest-btn">I want an AI chatbot for my business</button>
+        <button class="chat-suggest-btn">How long does a typical project take?</button>
+        <button class="chat-suggest-btn">Can I see your case studies?</button>
+        <button class="chat-suggest-btn">I want to talk to a human</button>
+      </div>
+    </div>
+
+    <!-- Chat input input/send area -->
+    <div class="chat-input-area">
+      <input type="text" id="chat-input" placeholder="Type a message..." autocomplete="off">
+      <button class="btn btn-primary btn-sm" id="chat-send">Send</button>
+    </div>
+  </div>
+</div>

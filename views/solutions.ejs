@@ -1,0 +1,88 @@
+<%- include('partials/header') %>
+
+<main class="main-content">
+  <div class="page-intro">
+    <h1>Our Solutions</h1>
+    <p>We do four things. Here's what they look like in practice.</p>
+  </div>
+
+  <section class="solutions-grid">
+    <!-- Pillar 1 -->
+    <div class="solution-card-clean">
+      <div class="solution-number">01</div>
+      <div class="solution-body">
+        <h3>AI Chatbots</h3>
+        <p>
+          Conversational agents deployed on your website, WhatsApp, or internal Slack. 
+          We train them on your actual documents using retrieval-augmented generation, so they give accurate answers — not hallucinated ones.
+        </p>
+        <div class="solution-tags">
+          <span class="chip">customer support</span>
+          <span class="chip">sales</span>
+          <span class="chip">knowledge base</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pillar 2 -->
+    <div class="solution-card-clean">
+      <div class="solution-number">02</div>
+      <div class="solution-body">
+        <h3>Workflow Automation</h3>
+        <p>
+          That thing where someone copies data from a PDF into a spreadsheet every morning? We automate that. 
+          Invoice parsing, file syncing between systems, weekly reports that write themselves.
+        </p>
+        <div class="solution-tags">
+          <span class="chip">operations</span>
+          <span class="chip">document parsing</span>
+          <span class="chip">APIs</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pillar 3 -->
+    <div class="solution-card-clean">
+      <div class="solution-number">03</div>
+      <div class="solution-body">
+        <h3>Custom ML Models</h3>
+        <p>
+          Sometimes an off-the-shelf model isn't enough. We fine-tune open-source language models on your data, 
+          or build traditional classifiers that run on your own servers — no data leaves your premises.
+        </p>
+        <div class="solution-tags">
+          <span class="chip">LLMs</span>
+          <span class="chip">fine-tuning</span>
+          <span class="chip">on-premise</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pillar 4 -->
+    <div class="solution-card-clean">
+      <div class="solution-number">04</div>
+      <div class="solution-body">
+        <h3>Strategy & Workshops</h3>
+        <p>
+          Not every AI idea is worth building. We run discovery sessions with your team to figure out 
+          where automation actually makes a difference — and where it'd be a waste of time.
+        </p>
+        <div class="solution-tags">
+          <span class="chip">advisory</span>
+          <span class="chip">workshops</span>
+          <span class="chip">ROI assessment</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="solutions-cta">
+    <h3>Not sure which one fits?</h3>
+    <p>Drop us a message. We'll have an honest chat about what's possible for your team.</p>
+    <a href="/contact" class="btn btn-primary">Talk to us</a>
+  </section>
+</main>
+
+<%- include('partials/chatbot') %>
+<%- include('partials/footer') %>

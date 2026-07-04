@@ -1,0 +1,60 @@
+    <footer>
+      <div class="footer-grid">
+        <div class="footer-col">
+          <div class="logo-text" style="font-size: 24px; margin-bottom: 8px;">kritika<span>.</span>ai</div>
+          <p>Professional AI software solutions designed and built around your company's workflows. Discovery to deployment, end-to-end.</p>
+          <div class="footer-socials">
+            <a href="#" class="social-icon">X</a>
+            <a href="#" class="social-icon">in</a>
+            <a href="#" class="social-icon">gh</a>
+          </div>
+        </div>
+        
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="/solutions">Solutions</a></li>
+            <li><a href="/cases">Case Studies</a></li>
+            <li><a href="/articles">Articles & Notes</a></li>
+            <li><a href="/gallery">Meetups & Events</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="/contact">Contact Us</a></li>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-col">
+          <h4>Administration</h4>
+          <ul>
+            <% if (session && session.adminId) { %>
+              <li><a href="/admin/dashboard">Go to Dashboard</a></li>
+              <li><a href="/admin/logout">Log out →</a></li>
+            <% } else { %>
+              <li><a href="/admin/login">Admin Log in →</a></li>
+            <% } %>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <span>&copy; 2026 Kritika.ai Solutions. Kathmandu, Nepal. All rights reserved.</span>
+        <span>Registered Academic Prototype System.</span>
+      </div>
+    </footer>
+  </div> <!-- Close app-container -->
+
+  <!-- Scripts -->
+  <script src="/js/main.js"></script>
+  <% if (!session || !session.adminId) { %>
+    <!-- Chatbot script (gated from admin panel views) -->
+    <script src="/js/chat.js"></script>
+  <% } %>
+</body>
+</html>

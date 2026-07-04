@@ -1,0 +1,118 @@
+<%- include('partials/header') %>
+
+<main class="main-content">
+  <div class="page-intro">
+    <h1>Tell us about your project.</h1>
+    <p>Submit your requirements through our secure inquiry system. We respond with a project outline and estimate within 1 business day.</p>
+  </div>
+
+  <section class="contact-split">
+    <!-- Contact Info Column -->
+    <div class="contact-info">
+      <div class="contact-details">
+        <div class="contact-detail-item">
+          <div class="contact-icon">✉</div>
+          <div>
+            <div style="font-size: 11px; color: var(--text-secondary); text-transform: uppercase;">Email</div>
+            <div style="font-size: 14px; font-weight: 600; color: var(--text-primary);">hello@kritika.ai</div>
+          </div>
+        </div>
+
+        <div class="contact-detail-item">
+          <div class="contact-icon">☎</div>
+          <div>
+            <div style="font-size: 11px; color: var(--text-secondary); text-transform: uppercase;">Phone</div>
+            <div style="font-size: 14px; font-weight: 600; color: var(--text-primary);">+977 1-4412345</div>
+          </div>
+        </div>
+
+        <div class="contact-detail-item">
+          <div class="contact-icon">⌖</div>
+          <div>
+            <div style="font-size: 11px; color: var(--text-secondary); text-transform: uppercase;">Location</div>
+            <div style="font-size: 14px; font-weight: 600; color: var(--text-primary);">Kathmandu, Nepal</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Inquiry Form Column -->
+    <div style="border: 1px solid var(--border-color); border-radius: 12px; padding: 32px; background: #ffffff;">
+      <h2 style="font-size: 20px; margin-bottom: 24px;">Inquiry Form</h2>
+      
+      <!-- Status messaging banners -->
+      <% if (statusMsg === 'success') { %>
+        <div style="padding: 12px; background-color: var(--accent-green); color: white; border-radius: 8px; font-size: 13px; font-weight: 600; margin-bottom: 20px;" id="status-success-banner">
+          ✓ Inquiry submitted successfully! We'll be in touch soon.
+        </div>
+      <% } else if (statusMsg === 'error_missing') { %>
+        <div style="padding: 12px; background-color: var(--accent-red); color: white; border-radius: 8px; font-size: 13px; font-weight: 600; margin-bottom: 20px;">
+          ✗ Please fill all required fields marked with an asterisk (*).
+        </div>
+      <% } else if (statusMsg === 'error_server') { %>
+        <div style="padding: 12px; background-color: var(--accent-red); color: white; border-radius: 8px; font-size: 13px; font-weight: 600; margin-bottom: 20px;">
+          ✗ Server error occurred during processing. Please try again.
+        </div>
+      <% } else if (typeof errorMsg !== 'undefined' && errorMsg) { %>
+        <div style="padding: 12px; background-color: var(--accent-red); color: white; border-radius: 8px; font-size: 13px; font-weight: 600; margin-bottom: 20px;" id="status-error-banner">
+          ✗ <%= errorMsg %>
+        </div>
+      <% } %>
+
+      <form action="/contact" method="POST">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+          <div class="form-group">
+            <label for="name">Full name *</label>
+            <input type="text" class="form-control" name="name" id="name" required placeholder="e.g. Sarita Adhikari" value="<%= typeof formData !== 'undefined' && formData.name ? formData.name : '' %>">
+          </div>
+          
+          <div class="form-group">
+            <label for="email">Email *</label>
+            <input type="email" class="form-control" name="email" id="email" required placeholder="e.g. sarita@studio.np" value="<%= typeof formData !== 'undefined' && formData.email ? formData.email : '' %>">
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+          <div class="form-group">
+            <label for="phone">Phone *</label>
+            <input type="text" class="form-control" name="phone" id="phone" required placeholder="e.g. +977 984-1123456" value="<%= typeof formData !== 'undefined' && formData.phone ? formData.phone : '' %>">
+          </div>
+
+          <div class="form-group">
+            <label for="company">Company</label>
+            <input type="text" class="form-control" name="company" id="company" placeholder="e.g. Galaxy Public School" value="<%= typeof formData !== 'undefined' && formData.company ? formData.company : '' %>">
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+          <div class="form-group">
+            <label for="country">Country</label>
+            <input type="text" class="form-control" name="country" id="country" placeholder="e.g. Nepal" value="<%= typeof formData !== 'undefined' && formData.country ? formData.country : '' %>">
+          </div>
+
+          <div class="form-group">
+            <label for="job_title">Job Title</label>
+            <input type="text" class="form-control" name="job_title" id="job_title" placeholder="e.g. Admissions Coordinator" value="<%= typeof formData !== 'undefined' && formData.job_title ? formData.job_title : '' %>">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="job_details">Tell us about your project *</label>
+          <textarea class="form-control" name="job_details" id="job_details" required placeholder="Detail the AI solutions, integrations, or workflows you need..." style="height: 100px;"><%= typeof formData !== 'undefined' && formData.job_details ? formData.job_details : '' %></textarea>
+        </div>
+
+        <div style="margin: 16px 0;">
+          <label class="form-checkbox">
+            <input type="checkbox" required checked>
+            <span>I agree to the data processing policies.</span>
+          </label>
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="width: 100%;">Send inquiry</button>
+      </form>
+    </div>
+  </section>
+</main>
+
+<%- include('partials/chatbot') %>
+<%- include('partials/footer') %>

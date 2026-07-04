@@ -1,0 +1,23 @@
+graph TB
+  subgraph Client["PRESENTATION TIER (Client Browser)"]
+    B["HTML / CSS / Vanilla JS"]
+    CB["AI Chatbot Widget (chat.js)"]
+  end
+  subgraph App["APPLICATION TIER (Node.js + Express)"]
+    EX["Express App (server.js)"]
+    MW["Session &amp; requireAdmin Middleware"]
+    RT["Route Handlers"]
+    EJS["EJS Template Engine"]
+  end
+  subgraph DataT["DATA TIER"]
+    DAL["Data Access Layer (db.js)"]
+    SQL[("SQLite (database.sqlite)")]
+  end
+  B <-->|HTTP request / response| EX
+  CB -. runs inside .- B
+  EX --> MW
+  MW --> RT
+  RT --> EJS
+  EJS -->|rendered HTML| B
+  RT --> DAL
+  DAL -->|parameterised SQL| SQL

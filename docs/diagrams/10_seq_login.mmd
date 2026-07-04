@@ -1,0 +1,18 @@
+sequenceDiagram
+  actor A as Administrator
+  participant B as Browser
+  participant S as Express /admin/login
+  participant DB as SQLite (admins)
+  A->>B: Enter username and password
+  B->>S: POST credentials
+  S->>DB: SELECT * FROM admins WHERE username = ?
+  DB-->>S: admin row (bcrypt hash)
+  S->>S: bcrypt.compare(password, hash)
+  alt Password matches
+    S->>S: session.regenerate() + set adminId
+    S-->>B: 302 redirect /admin/dashboard
+    B-->>A: Dashboard shown
+  else No match
+    S-->>B: 302 redirect /admin/login?error=invalid
+    B-->>A: Error message shown
+  end
