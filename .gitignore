@@ -3,3 +3,10 @@ database.sqlite
 .env
 .DS_Store
 *.log
+
+# Coursework/documentation assets and tooling (not part of the app)
+docs/
+
+# Editor/agent tooling
+.claude/
+.ruff_cache/
